@@ -1,0 +1,70 @@
+def accept(a, n):
+    print("Enter marks:")
+    for i in range(n):
+        marks = int(input(f"Enter marks for student {i+1}: "))
+        a.append(marks)
+
+def display(a, n):
+    print("Entered marks:")
+    for i in range(n):
+        print(a[i], end=" ")
+    print()
+
+def average(a, n):
+    total = 0
+    count = 0
+    for i in range(n):
+        if a[i] >= 0:
+            total += a[i]
+            count += 1
+    if count > 0:
+        print("Average marks:", total / count)
+    else:
+        print("No valid marks to calculate average.")
+
+def minimum(a, n):
+    valid_marks = [mark for mark in a if mark >= 0]
+    if valid_marks:
+        min_mark = min(valid_marks)
+        print("Minimum marks are:", min_mark)
+    else:
+        print("No valid marks to determine minimum.")
+
+def maximum(a, n):
+    valid_marks = [mark for mark in a if mark >= 0]
+    if valid_marks:
+        max_mark = max(valid_marks)
+        print("Maximum marks are:", max_mark)
+    else:
+        print("No valid marks to determine maximum.")
+
+def main():
+    a = []
+    n = int(input("Enter the number of students: "))
+    while True:
+        print("\nMenu:")
+        print("1. Accept marks")    
+        print("2. Display marks")  
+        print("3. Calculate average marks")  
+        print("4. Find minimum marks")  
+        print("5. Find maximum marks")  
+        print("6. Exit")
+        choice = int(input("Enter your choice: "))
+        
+        if choice == 1:
+            accept(a, n)  
+        elif choice == 2:
+            display(a, n)      
+        elif choice == 3:
+            average(a, n)  
+        elif choice == 4:
+            minimum(a, n)  
+        elif choice == 5:
+            maximum(a, n)  
+        elif choice == 6:
+            print("Exiting program.")
+            break
+        else:
+            print("Invalid choice! Please try again.")
+
+main()

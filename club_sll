@@ -1,0 +1,86 @@
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    string name;
+    string prn;
+    Node* next;
+
+    Node(string sname, string sprn) {
+        name = sname;
+        prn = sprn;
+        next = NULL;
+    }
+};
+
+Node* head = NULL;
+
+void add_president(string name = "President", string prn = "111") {
+    Node* temp = new Node(name, prn);
+    if (head == NULL) {
+        head = temp;
+    } else {
+        cout << "President already exists.\n";
+    }
+}
+
+void add_secretary(string name = "Secretary", string prn = "999") {
+    if (head == NULL) {
+        cout << "Add the President first.\n";
+        return;
+    }
+    Node* temp = new Node(name, prn);
+    Node* cur = head;
+    while (cur->next != NULL) {
+        cur = cur->next;
+    }
+    cur->next = temp;
+}
+
+void add_member(string name = "Member", string prn = "555") {
+    if (head == NULL || head->next == NULL) {
+        cout << "Add the President and Secretary first.\n";
+        return;
+    }
+    Node* temp = new Node(name, prn);
+    temp->next = head->next;
+    head->next = temp;
+}
+
+void display_list(Node* head) {
+    cout << "\n### Committee Members ###\n";
+    if (head == NULL) {
+        cout << "The list is empty.\n";
+        return;
+    }
+    Node* cur = head;
+    while (cur != NULL) {
+        cout << cur->name << " (" << cur->prn << ")\n";
+        cur = cur->next;
+    }
+    cout << "#########################\n";
+}
+
+void cleanup(Node* head) {
+    Node* cur = head;
+    while (cur != NULL) {
+        Node* temp = cur;
+        cur = cur->next;
+        delete temp;
+    }
+}
+
+int main() {
+    add_president();
+    add_secretary();
+    add_member("Member1", "5551");
+    add_member("Member2", "5552");
+    add_member("Member3", "5553");
+    display_list(head);
+
+    // Clean up dynamically allocated memory
+    cleanup(head);
+
+    return 0;
+}

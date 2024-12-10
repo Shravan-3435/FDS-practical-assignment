@@ -1,0 +1,41 @@
+import numpy as np
+
+# Function to input a matrix
+def input_matrix(rows, cols, matrix_name):
+    print(f"Enter the elements of {matrix_name} (row by row):")
+    matrix = []
+    for i in range(rows):
+        row = list(map(int, input(f"Enter row {i+1} (space-separated): ").split()))
+        if len(row) != cols:
+            print(f"Please enter exactly {cols} values.")
+            return input_matrix(rows, cols, matrix_name)
+        matrix.append(row)
+    return np.array(matrix)
+
+# Main program
+def main():
+    # Input size of the matrices
+    rows = int(input("Enter the number of rows for the matrices: "))
+    cols = int(input("Enter the number of columns for the matrices: "))
+    
+    # Input the matrices
+    matrix_x = input_matrix(rows, cols, "Matrix X")
+    matrix_y = input_matrix(rows, cols, "Matrix Y")
+    
+    # Element-wise addition
+    print("\nThe element-wise addition of the matrices is:")
+    print(np.add(matrix_x, matrix_y))
+
+    # Element-wise subtraction
+    print("\nThe element-wise subtraction of the matrices is:")
+    print(np.subtract(matrix_x, matrix_y))
+
+    # Matrix multiplication
+    print("\nThe product of the matrices is:")
+    print(np.dot(matrix_x, matrix_y))
+
+    # Transpose of the first matrix
+    print("\nThe transpose of Matrix X is:")
+    print(matrix_x.T)
+
+main()

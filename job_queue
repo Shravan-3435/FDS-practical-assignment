@@ -1,0 +1,65 @@
+#include <iostream>
+#include <queue>
+#include <string>
+using namespace std;
+
+// Function to display the job queue
+void displayQueue(queue<string> jobQueue) {
+    if (jobQueue.empty()) {
+        cout << "The job queue is empty." << endl;
+        return;
+    }
+    cout << "Current jobs in the queue: ";
+    while (!jobQueue.empty()) {
+        cout << jobQueue.front() << " ";
+        jobQueue.pop();
+    }
+    cout << endl;
+}
+
+// Main program
+int main() {
+    queue<string> jobQueue; // Declare a queue to store jobs
+    int choice;
+    string job;
+
+    while (true) {
+        cout << "\n--- Job Queue Simulation ---" << endl;
+        cout << "1. Add Job to Queue" << endl;
+        cout << "2. Delete Job from Queue" << endl;
+        cout << "3. Display Jobs in Queue" << endl;
+        cout << "4. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            cout << "Enter the job name to add: ";
+            cin.ignore(); // To ignore leftover newline character from previous input
+            getline(cin, job);
+            jobQueue.push(job);
+            cout << "Job added to the queue successfully." << endl;
+            break;
+
+        case 2:
+            if (!jobQueue.empty()) {
+                cout << "Job \"" << jobQueue.front() << "\" deleted from the queue." << endl;
+                jobQueue.pop();
+            } else {
+                cout << "The queue is empty. No job to delete." << endl;
+            }
+            break;
+
+        case 3:
+            displayQueue(jobQueue);
+            break;
+
+        case 4:
+            cout << "Exiting program. Goodbye!" << endl;
+            return 0;
+
+        default:
+            cout << "Invalid choice! Please try again." << endl;
+        }
+    }
+}
