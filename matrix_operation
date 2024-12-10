@@ -5,7 +5,7 @@ def input_matrix(rows, cols, matrix_name):
     print(f"Enter the elements of {matrix_name} (row by row):")
     matrix = []
     for i in range(rows):
-        row = list(map(int, input(f"Enter row {i+1} (space-separated): ").split()))
+        row = list(map(int, input(f"Enter row {i+1} : ").split()))
         if len(row) != cols:
             print(f"Please enter exactly {cols} values.")
             return input_matrix(rows, cols, matrix_name)
